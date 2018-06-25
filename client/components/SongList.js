@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
 class SongList extends Component {
+    renderSongs() {
+        return this.props.data.songs.map(song => {
+            return (
+                <li>{song.title}</li>
+            )
+        })
+    }
     render() {
-       return(
-        <div>
-            SongList
-        </div>
-       );
+        if(this.props.data.loading) { return <div>Loading...</div>; }
+        return(
+            <div>
+                {this.renderSongs()}
+            </div>
+        );
     }
 }
 
-const query = gql`
+// only defines the query, doesn't execute any network requests
+const query = gql` 
     {
         songs {
             title
@@ -19,4 +29,4 @@ const query = gql`
     }
 `;
 
-export default SongList;
+export default graphql(query)(SongList);
