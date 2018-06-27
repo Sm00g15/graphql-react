@@ -6,10 +6,9 @@ import query from '../queries/fetchSongs';
 
 class SongList extends Component {
     onSongDelete(id) {
-        this.props.mutate({
-            variables: { id },
-            refetchQueries:  [{ query }]
-        })
+        this.props.mutate({variables: { id } })
+            .then(() => this.props.data.refetch());
+            // this.props.data.refetch supplied by the react-apollo library 
     }
     renderSongs() {
         return this.props.data.songs.map(song => {
