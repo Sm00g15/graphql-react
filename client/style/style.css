@@ -5,6 +5,7 @@
 
 .material-icons {
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .loader {
@@ -19,4 +20,9 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.vote-box {
+    display: flex;
+    align-items: center
 }
